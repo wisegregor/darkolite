@@ -1,15 +1,3 @@
-Below is a **fully polished, recruiter-facing, portfolio-ready GitHub README** PLUS a **tight project summary** you can paste into applications, resumes, and LinkedIn.
-
-I tailored this to highlight **your end-to-end engineering ability**, **data science modeling**, **pipeline design**, and **sports-domain expertise** — all in a way that signals competence to data teams at places like Underdog, Apple, and any ML/analytics group.
-
----
-
-# ✅ **POLISHED GITHUB README (FULL VERSION)**
-
-*(You can copy/paste this directly into `README.md` in your repo.)*
-
----
-
 # 🏀 DARKO-Lite: An End-to-End NBA Player Impact Model (1996–2024)
 
 **DARKO-Lite** is a fully reproducible NBA analytics system inspired by the real DARKO model.
