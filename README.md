@@ -1,9 +1,3 @@
-Absolutely — your README currently contains **merge-conflict junk** (`<<<<<<< HEAD`, `=======`, `>>>>>>>`) and duplicated sections.
-
-Here is a **fully cleaned, merged, polished README.md** you can paste directly into GitHub:
-
----
-
 # 🏀 DARKO-Lite: An End-to-End NBA Player Impact Model (1996–2024)
 
 **DARKO-Lite** is a fully reproducible NBA analytics system inspired by the real DARKO model.
