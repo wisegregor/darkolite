@@ -7,7 +7,7 @@ import plotly.express as px
 # -----------------------------------------------------
 @st.cache_data
 def load_darkolite():
-    return pd.read_csv("data/darkolite_player_season_final.csv")
+    return pd.read_csv("app/data/darkolite_player_season_final.csv")
 
 
 df = load_darkolite()
