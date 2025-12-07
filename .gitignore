@@ -1,0 +1,45 @@
+# ============================
+# IGNORE LARGE DATA ARTIFACTS
+# ============================
+
+# Raw data directories
+data/
+historical_scraper/all_seasons/
+historical_scraper/team_boxscores/
+historical_scraper/player_boxscores/
+
+# Any CSVs inside data-related folders
+data/**/*.csv
+historical_scraper/**/*.csv
+features/**/*.csv
+
+# Model outputs
+models/
+models/**/*.pkl
+models/**/*.parquet
+
+# Archives / binaries
+*.db
+*.zip
+*.tar
+*.gz
+
+# ============================
+# PYTHON IGNORE PATTERNS
+# ============================
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.env/
+.env
+*.key
+
+# VSCode settings
+.vscode/
