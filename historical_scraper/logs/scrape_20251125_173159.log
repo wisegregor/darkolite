@@ -1,0 +1,24 @@
+2025-11-25 17:31:59 [INFO] 📜 Logging to C:\Users\gngim\Desktop\Darko\historical_scraper\logs\scrape_20251125_173159.log
+2025-11-25 17:31:59 [INFO] 
+2025-11-25 17:31:59 [INFO] ================================================
+2025-11-25 17:31:59 [INFO] 🏀 Processing season 1996-97
+2025-11-25 17:31:59 [INFO] ================================================
+2025-11-25 17:31:59 [INFO] ✔ Team metadata already exists for 1996-97 — loading from disk.
+2025-11-25 17:31:59 [INFO] 📊 Found 1189 unique GAME_IDs in metadata for 1996-97.
+2025-11-25 17:31:59 [INFO] ⏩ Found 1189 existing player boxscores for 1996-97 (will skip these).
+2025-11-25 17:31:59 [INFO] 🎯 Scraping game 1996-97_29600001 (1/1189)
+2025-11-25 17:31:59 [INFO] 📡 Requesting boxscore for GAME_ID 29600001 (attempt 1)
+2025-11-25 17:32:00 [WARNING] 🚧 Throttled fetching 29600001: 'resultSet'
+   → Cooling down for 9.1 seconds (attempt 1/25)
+2025-11-25 17:32:09 [INFO] 📡 Requesting boxscore for GAME_ID 29600001 (attempt 2)
+2025-11-25 17:32:09 [WARNING] 🚧 Throttled fetching 29600001: 'resultSet'
+   → Cooling down for 11.1 seconds (attempt 2/25)
+2025-11-25 17:32:20 [INFO] 📡 Requesting boxscore for GAME_ID 29600001 (attempt 3)
+2025-11-25 17:32:20 [WARNING] 🚧 Throttled fetching 29600001: 'resultSet'
+   → Cooling down for 19.6 seconds (attempt 3/25)
+2025-11-25 17:32:40 [INFO] 📡 Requesting boxscore for GAME_ID 29600001 (attempt 4)
+2025-11-25 17:32:40 [WARNING] 🚧 Throttled fetching 29600001: 'resultSet'
+   → Cooling down for 23.2 seconds (attempt 4/25)
+2025-11-25 17:33:03 [INFO] 📡 Requesting boxscore for GAME_ID 29600001 (attempt 5)
+2025-11-25 17:33:03 [WARNING] 🚧 Throttled fetching 29600001: 'resultSet'
+   → Cooling down for 28.7 seconds (attempt 5/25)
