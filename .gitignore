@@ -3,13 +3,11 @@
 # ============================
 
 # Raw data directories
-data/
 historical_scraper/all_seasons/
 historical_scraper/team_boxscores/
 historical_scraper/player_boxscores/
 
 # Any CSVs inside data-related folders
-data/**/*.csv
 historical_scraper/**/*.csv
 features/**/*.csv
 
