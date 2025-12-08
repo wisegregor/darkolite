@@ -251,9 +251,9 @@ http://localhost:8501
 1. Push repo to GitHub  
 2. Visit https://share.streamlit.io  
 3. Set entrypoint:
-
+```
 app/streamlit_app.py
-
+```
 
 4. Deploy  
 
