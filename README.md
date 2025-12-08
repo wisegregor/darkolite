@@ -49,72 +49,119 @@ This project demonstrates full-stack analytics ownership:
 
 ---
 
-## 📁 Project Structure
-
+# 📁 Project Structure
 darkolite/
 │
-├── scraping/
-├── features/
-├── darkolite_model/
-├── data/
-├── app/
+├── scraping/                     # Raw NBA data collection
+│   ├── scrape_player_boxscores.py
+│   ├── scrape_team_boxscores.py
+│   ├── merge_team_data_into_player_data.py
+│
+├── features/                     # Feature engineering
+│   ├── feature_eng_all_seasons.py
+│   ├── combine_all_seasons.py
+│
+├── darkolite_model/              # Modeling components
+│   ├── darkolite_box_talent.py
+│   ├── darkolite_rapm.py
+│   ├── darkolite_final.py
+│
+├── data/                         # Intermediate & final CSVs (ignored in git)
+│   ├── season folders...
+│   ├── all_darkoish_features_master.csv
+│   ├── darkolite_box_player_season.csv
+│   ├── darkolite_rapm_player_season.csv
+│   ├── darkolite_player_season_final.csv
+│
+├── app/                          # Streamlit app
+│   ├── streamlit_app.py
+│
 ├── README.md
 └── requirements.txt
-
-yaml
-Copy code
-
-(Your original structure section remains unchanged — I kept your wording.)
-
----
-
-## 🚀 Pipeline Overview
-
-(Your original diagram stays the same.)
-
----
-
-## 🧠 Modeling Details
-
-(Your detailed EWMA + RAPM breakdown sections remain unchanged.)
-
----
-
-## 📊 Streamlit App
-
-(Your app information stays as-is.)
-
----
-
-## 📦 Installation
-
+--- # 🚀 Pipeline Overview
+┌─────────────────────────┐
+             │     NBA API Scraper     │
+             │  player + team logs     │
+             └─────────────┬───────────┘
+                           ▼
+              ┌────────────────────────┐
+              │ Player-Team Merging    │
+              │ merged_player_team.csv │
+              └─────────────┬──────────┘
+                           ▼
+              ┌────────────────────────┐
+              │ Feature Engineering     │
+              │ per100, TS%, PM100 etc │
+              └─────────────┬──────────┘
+                           ▼
+              ┌────────────────────────┐
+              │  Master Feature Set    │
+              │ all_features_master    │
+              └───────┬──────┬────────┘
+             BOX       │      │   RAPM
+           ┌───────────┘      └───────────────┐
+           ▼                                    ▼
+┌─────────────────────┐               ┌──────────────────────┐
+│  Fast/Slow EWMA     │               │   Team Net Ratings   │
+│  Box Talent Model   │               │   Design Matrix      │
+└──────────┬──────────┘               └──────────┬───────────┘
+           ▼                                     ▼
+┌─────────────────────┐               ┌──────────────────────┐
+│ box_off, box_def     │              │   Ridge RAPM          │
+└──────────┬──────────┘               └──────────┬───────────┘
+           └──────────────┬──────────────────────┘
+                          ▼
+             ┌────────────────────────┐
+             │    DARKO-Lite Blend    │
+             │ 0.55 box + 0.45 RAPM   │
+             └─────────────┬──────────┘
+                           ▼
+             ┌────────────────────────┐
+             │ darkolite_player_final │
+             └─────────────┬──────────┘
+                           ▼
+             ┌────────────────────────┐
+             │    Streamlit App       │
+             └────────────────────────┘
+--- # 🧠 Modeling Details ## 📌 1. Box-Score Talent Model (EWMA) Dual-timescale EWMAs: * **Fast EWMA** = recent performance * **Slow EWMA** = long-term talent Blend:
+talent = 0.70 * slow + 0.30 * fast
+Stats modeled:
+pts_per100
+reb_per100
+ast_per100
+stl_per100
+blk_per100
+to_per100
+ts_pct_calc
+efg_pct_calc
+pm_per100
+Outputs:
+darkolite_box_offense
+darkolite_box_defense
+darkolite_box_total
+--- ## 📌 2. Ridge RAPM Model Design matrix:
+X[game, player] = minutes / team_minutes
+Team net rating is regressed using ridge regression:
+β = (XᵀWX + λI)⁻¹ XᵀWy
+λ = **1500** for stability. Output:
+rapm_darkolite
+--- ## 📌 3. Final DARKO-Lite Metric Blended Z-score:
+Z = 0.55 * box_z + 0.45 * rapm_z
+Scaled to a DPM-like value:
+darkolite_dpm = 3.5 * Z
+Final file:
+darkolite_player_season_final.csv
+--- # 📊 Streamlit App Located in:
+app/streamlit_app.py
+Features: * Player dropdown * DPM rating over time * Box vs RAPM components * Season breakdown --- # 📦 Installation
 pip install -r requirements.txt
-
-yaml
-Copy code
-
----
-
-## ▶️ Running the App
-
+--- # ▶️ Running the App
 streamlit run app/streamlit_app.py
-
-yaml
-Copy code
-
----
-
-## ☁️ Deployment (Streamlit Cloud)
-
-(Your original deployment section.)
-
----
-
-## 🚀 Roadmap
-
-(Your original roadmap unchanged.)
-
----
+Opens at:
+http://localhost:8501
+--- # ☁️ Deployment (Streamlit Cloud) 1. Push repo to GitHub 2. Visit: [https://share.streamlit.io](https://share.streamlit.io) 3. Set entrypoint:
+app/streamlit_app.py
+4. Deploy --- # 🚀 Roadmap * Player similarity search * Team-level DARKO-Lite * Aging curves & projections * Bayesian RAPM shrinkage * Real-time data refresh * API endpoint for player queries ---
 
 ## 🙏 Acknowledgments
 
