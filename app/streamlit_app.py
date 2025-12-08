@@ -19,10 +19,14 @@ st.write("Explore player impact ratings from 1996–2024 using a DARKO-inspired 
 # PLAYER SELECTION
 # -----------------------------------------------------
 players = sorted(df["player_name"].unique())
-player = st.selectbox("Select a player", players, index=players.index("Stephen Curry") if "Stephen Curry" in players else 0)
+player = st.selectbox(
+    "Select a player",
+    players,
+    index=players.index("Stephen Curry") if "Stephen Curry" in players else 0
+)
 
 pdf = df[df["player_name"] == player].sort_values("season")
-pdf["season"] = pdf["season"].astype(str)
+pdf["season"] = pdf["season"].astype(str)  # ensure categorical-like string
 
 # -----------------------------------------------------
 # TOP-LEVEL METRICS
@@ -46,7 +50,15 @@ fig = px.line(
     markers=True,
     title=f"{player} — DARKO-Lite Rating by Season"
 )
-fig.update_layout(xaxis_title="Season", yaxis_title="DARKO-Lite DPM")
+
+fig.update_layout(
+    xaxis_title="Season",
+    yaxis_title="DARKO-Lite DPM"
+)
+
+# 🔥 FORCE X-AXIS TO BE CATEGORICAL (fixes the "Jan 2010" issue)
+fig.update_xaxes(type="category")
+
 st.plotly_chart(fig, use_container_width=True)
 
 # -----------------------------------------------------
@@ -61,11 +73,16 @@ fig2 = px.line(
     markers=True,
     title=f"{player} — Component Z-Scores"
 )
+
 fig2.update_layout(
     xaxis_title="Season",
     yaxis_title="Z-Score (within-season)",
     legend_title="Component"
 )
+
+# 🔥 categorical x-axis here too
+fig2.update_xaxes(type="category")
+
 st.plotly_chart(fig2, use_container_width=True)
 
 # -----------------------------------------------------
