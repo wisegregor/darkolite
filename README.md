@@ -145,12 +145,12 @@ Dual-timescale EWMAs:
 * **Slow EWMA** = long-term talent  
 
 Blend:
-
+```
 talent = 0.70 * slow + 0.30 * fast
-
+```
 
 Stats modeled:
-
+```
 pts_per100
 reb_per100
 ast_per100
@@ -160,63 +160,63 @@ to_per100
 ts_pct_calc
 efg_pct_calc
 pm_per100
-
+```
 
 Outputs:
-
+```
 darkolite_box_offense
 darkolite_box_defense
 darkolite_box_total
-
+```
 
 ---
 
 ### 📌 2. Ridge RAPM Model
 
 Design matrix:
-
+```
 X[game, player] = minutes / team_minutes
-
+```
 
 Regression:
-
+```
 β = (XᵀWX + λI)⁻¹ XᵀWy
-
+```
 
 λ = **1500** for stability.
 
 Output:
-
+```
 rapm_darkolite
-
+```
 
 ---
 
 ### 📌 3. Final DARKO-Lite Metric
 
 Blended Z-score:
-
+```
 Z = 0.55 * box_z + 0.45 * rapm_z
-
+```
 
 Scaled DPM-like value:
-
+```
 darkolite_dpm = 3.5 * Z
-
+```
 
 Final dataset:
-
+```
 darkolite_player_season_final.csv
-
+```
 
 ---
 
 ## 📊 Streamlit App
 
 Located in:
-
+```
 app/streamlit_app.py
-
+```
 
 Features:
 
@@ -228,21 +228,21 @@ Features:
 ---
 
 ## 📦 Installation
-
+```
 pip install -r requirements.txt
-
+```
 
 ---
 
 ## ▶️ Running the App
-
+```
 streamlit run app/streamlit_app.py
-
+```
 
 Open in browser:
-
+```
 http://localhost:8501
-
+```
 
 ---
 
